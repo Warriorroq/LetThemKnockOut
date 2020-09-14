@@ -39,6 +39,7 @@ public class PlayerParams : MonoBehaviour
         currentStamina = maxStamina;
         currentHp = maxHp;
         currentArmor = maxArmor;
+        InvokeRepeating(nameof(AddStamina), 1f, 1f);
     }
     private void Update()
     {
@@ -51,7 +52,7 @@ public class PlayerParams : MonoBehaviour
     private void FixedUpdate()
     {
         CheckStamina();
-        InvokeRepeating("AddStamina", 1f, 100f);
+       
     }
     private void AddStamina()
     {

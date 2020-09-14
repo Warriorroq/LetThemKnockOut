@@ -101,14 +101,6 @@ public class PlayerController : MonoBehaviour
         else
             currentSpeed = speedWalk;
     }
-
-    private IEnumerator TakeRbVelocity(Rigidbody rb)
-    {
-        yield return new WaitForSeconds(0.05f);
-        moveDirection = rb.velocity;
-        GetComponent<CharacterController>().enabled = true;
-        GetComponent<CapsuleCollider>().enabled = false;
-    }
     //other
     private void Grounded()
     {
@@ -152,7 +144,16 @@ public class PlayerController : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         GetComponent<CapsuleCollider>().enabled = true;
         GetComponent<CharacterController>().enabled = false;
+        rb.velocity = new Vector3(0,0,0);
         rb.AddForce(direction * strenght);
+        rb.velocity = moveDirection + rb.velocity;
         TakeRbVelocity(rb);
+    }
+    private IEnumerator TakeRbVelocity(Rigidbody rb)
+    {
+        yield return new WaitForSeconds(0.05f);
+        moveDirection = rb.velocity;
+        GetComponent<CharacterController>().enabled = true;
+        GetComponent<CapsuleCollider>().enabled = false;
     }
 }    
