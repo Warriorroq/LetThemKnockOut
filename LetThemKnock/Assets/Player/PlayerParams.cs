@@ -69,8 +69,6 @@ public class PlayerParams : MonoBehaviour
     {
         if (currentState == state.run && currentStamina > 0)
             currentStamina--;
-        else if ((currentState == state.WallRunLeft || currentState == state.WallRunRight) && currentStamina > 0)
-            currentStamina -= 2;
     }
     public void TakeDamage(int damage)
     {
