@@ -13,7 +13,7 @@ public class MapCamera : MonoBehaviour
     }
     private void Start()
     {
-        InvokeRepeating(nameof(Transport),0f,0.1f);
+        InvokeRepeating(nameof(Transport),0f,0.05f);
     }
     void Update()
     {
@@ -23,6 +23,6 @@ public class MapCamera : MonoBehaviour
     private void Transport()
     {
         if (transform.position != pos.position)
-            transform.position += movementDirection * 0.1f;
+            transform.position += movementDirection * 0.05f;
     }
 }
