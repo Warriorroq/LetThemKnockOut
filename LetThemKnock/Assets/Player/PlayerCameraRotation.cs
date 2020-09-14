@@ -12,7 +12,15 @@ public class PlayerCameraRotation : MonoBehaviour
     private void OnEnable()
     {
         body = transform.parent;
-        param = body.gameObject.GetComponent<PlayerParams>();
+        try
+        {
+            param = body.gameObject.GetComponent<PlayerParams>();
+        }
+        catch
+        {
+
+        }
+        
     }
     void Update()
     {

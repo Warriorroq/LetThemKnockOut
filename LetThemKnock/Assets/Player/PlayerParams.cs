@@ -17,7 +17,7 @@ public class PlayerParams : MonoBehaviour
     private int currentStamina;
     public int maxArmor;
     private int currentArmor;
-    public int maxHp;
+    public int maxHp = 100;
     private int currentHp;
 
     public int GetArmor()
