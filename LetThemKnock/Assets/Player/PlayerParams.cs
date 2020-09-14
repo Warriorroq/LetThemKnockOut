@@ -10,8 +10,6 @@ public class PlayerParams : MonoBehaviour
         walk,
         slide,
         fall,
-        WallRunRight,
-        WallRunLeft,
     }
     public state currentState;
 

@@ -21,15 +21,7 @@ public class PlayerCameraRotation : MonoBehaviour
         CheckSlide(y);
         if(transform.eulerAngles.x + x < 90 || transform.eulerAngles.x + x > 270)
             transform.Rotate(x, 0, 0);
-        CheckWallRun();
 
-    }
-    private void CheckWallRun()
-    {
-        if (param.currentState == PlayerParams.state.WallRunLeft)
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - 15f);
-        else if (param.currentState == PlayerParams.state.WallRunRight)
-            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + 15f);
     }
     void CheckSlide(float y)
     {

@@ -26,10 +26,6 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         CheckRun();
         Grounded();
-        if(!IFWallRun())
-            moveDirection.y -= gravity * Time.deltaTime;
-        else
-            moveDirection.y -= gravity * Time.deltaTime/4;
 
         if(controller.enabled)
             controller.Move(moveDirection * Time.deltaTime);
@@ -41,7 +37,6 @@ public class PlayerController : MonoBehaviour
         else
             transform.localScale = new Vector3(1, 1f, 1);
 
-        RaycastSides();
     }
     private void FixedUpdate()
     {
@@ -88,7 +83,7 @@ public class PlayerController : MonoBehaviour
     //running
     private void CheckRun()
     {
-        if (!IfSlide() && !IFWallRun())
+        if (!IfSlide())
             ChangeRun();
         StateRun();
     }
@@ -106,56 +101,7 @@ public class PlayerController : MonoBehaviour
         else
             currentSpeed = speedWalk;
     }
-    //wallrun 
-    private void RaycastSides()
-    {
-        RaycastHit[] hit = new RaycastHit[2];
-        Physics.Raycast(transform.position, transform.right, out hit[0], 1f);
-        Physics.Raycast(transform.position, -transform.right, out hit[1], 1f);
 
-        if (param.GetStamina() > 0)
-            SetWallRun(hit);
-        else param.currentState = PlayerParams.state.idle;
-    }
-    private void SetWallRun(RaycastHit[] hit)
-    {
-        if (controller.velocity.magnitude >= 2f && Input.GetKey(KeyCode.Space) && !IFWallRun())
-            CheckStaminaForWallRun(hit);
-        else if ((hit[0].collider == null && hit[1].collider == null) && IFWallRun())
-            param.currentState = PlayerParams.state.idle;
-    }
-    private void CheckStaminaForWallRun(RaycastHit[] hit)
-    { if (param.GetStamina() > param.maxStamina / 4) ActivateWallRun(hit); }
-    private void ActivateWallRun(RaycastHit[] hit)
-    {
-        if (Input.GetKey(KeyCode.D) && hit[0].collider != null)
-            param.currentState = PlayerParams.state.WallRunRight;
-        else if (Input.GetKey(KeyCode.A) && hit[1].collider != null)
-            param.currentState = PlayerParams.state.WallRunLeft;
-    }
-    private bool IFWallRun()
-        => param.currentState == PlayerParams.state.WallRunLeft || param.currentState == PlayerParams.state.WallRunRight;
-    private void JumpFromWall()
-    {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        GetComponent<CapsuleCollider>().enabled = true;
-        GetComponent<CharacterController>().enabled = false;
-
-        AddPowerForRigitBody(rb);
-
-        StartCoroutine(TakeRbVelocity(rb));
-
-    }
-    private void AddPowerForRigitBody(Rigidbody rb)
-    {
-        rb.velocity = new Vector3(0, 0, 0);
-        rb.AddForce(transform.up * jumpSpeed * 50f);
-        rb.AddForce(transform.forward * jumpSpeed * 20f);
-        if (param.currentState == PlayerParams.state.WallRunLeft)
-            rb.AddForce(transform.right * jumpSpeed * 100f);
-        else if (param.currentState == PlayerParams.state.WallRunRight)
-            rb.AddForce(-transform.right * jumpSpeed * 100f);
-    }
     private IEnumerator TakeRbVelocity(Rigidbody rb)
     {
         yield return new WaitForSeconds(0.05f);
@@ -172,11 +118,6 @@ public class PlayerController : MonoBehaviour
             Move();
             Jump();
         }
-        else
-        {
-            if (Input.GetKeyUp(KeyCode.Space) && IFWallRun())
-                JumpFromWall();
-        }
     }
     private void Jump()
     {
@@ -186,7 +127,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
-        if (!IfSlide() && !IFWallRun())
+        if (!IfSlide())
         {
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
