@@ -9,7 +9,7 @@ public class PlayerCameraRotation : MonoBehaviour
     private Transform body;
     private float bodyY;
     private PlayerParams param;
-    private void Awake()
+    private void OnEnable()
     {
         body = transform.parent;
         param = body.gameObject.GetComponent<PlayerParams>();

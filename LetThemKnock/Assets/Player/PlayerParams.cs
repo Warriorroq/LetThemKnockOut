@@ -81,4 +81,10 @@ public class PlayerParams : MonoBehaviour
     }
     public void TakeFallDamage(int damage)
         =>currentHp -= damage;
+    private void OnDestroy()
+    {
+        //remove Camera 
+        //disable "PlayerCameraRotation"
+        //enable Mapcamera
+    }
 }
