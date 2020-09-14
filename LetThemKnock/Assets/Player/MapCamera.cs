@@ -10,13 +10,19 @@ public class MapCamera : MonoBehaviour
     private void OnEnable()
     {
         movementDirection = new Vector3(pos.position.x - transform.position.x, pos.position.y - transform.position.y, pos.position.z - transform.position.z);
-        movementDirection *= 0.05f;
+    }
+    private void Start()
+    {
+        InvokeRepeating(nameof(Transport),0f,0.1f);
     }
     void Update()
     {
-        if(transform.position != pos.position)
-            transform.position += movementDirection;
 
         //enable mapControllermenu
+    }
+    private void Transport()
+    {
+        if (transform.position != pos.position)
+            transform.position += movementDirection * 0.1f;
     }
 }

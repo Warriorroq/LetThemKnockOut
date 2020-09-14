@@ -20,6 +20,15 @@ public class PlayerCameraRotation : MonoBehaviour
         {
             UseBody();
         }
+        else
+        {
+            EnableMapcam();
+        }
+    }
+    private void EnableMapcam()
+    {
+        GetComponent<PlayerCameraRotation>().enabled = false;
+        GetComponent<MapCamera>().enabled = true;
     }
     private void UseBody()
     {
