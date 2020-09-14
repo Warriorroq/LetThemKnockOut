@@ -83,8 +83,14 @@ public class PlayerParams : MonoBehaviour
         =>currentHp -= damage;
     private void OnDestroy()
     {
-        //remove Camera 
-        //disable "PlayerCameraRotation"
-        //enable Mapcamera
+        PlayerCameraRotation[] rot = GetComponentsInChildren<PlayerCameraRotation>();
+
+        foreach(PlayerCameraRotation cam in rot)
+        {
+            GameObject camera = cam.gameObject;
+            camera.transform.parent = null;
+            camera.GetComponent<PlayerCameraRotation>().enabled = false;
+            camera.GetComponent<MapCamera>().enabled = true;
+        }
     }
 }

@@ -9,11 +9,14 @@ public class MapCamera : MonoBehaviour
     [SerializeField] private Vector3 rotationDirection;
     private void OnEnable()
     {
-        //createSpeed
+        movementDirection = new Vector3(pos.position.x - transform.position.x, pos.position.y - transform.position.y, pos.position.z - transform.position.z);
+        movementDirection *= 0.05f;
     }
     void Update()
     {
-        //check if cam on position 
+        if(transform.position != pos.position)
+            transform.position += movementDirection;
+
         //enable mapControllermenu
     }
 }
