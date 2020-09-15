@@ -123,6 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &226783114
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +269,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Player
 --- !u!1 &413943572
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +396,11 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
+<<<<<<< HEAD
   m_Constraints: 94
+=======
+  m_Constraints: 0
+>>>>>>> Player
   m_CollisionDetection: 0
 --- !u!143 &413943579
 CharacterController:
@@ -733,7 +740,11 @@ Transform:
   m_GameObject: {fileID: 972220921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.73, y: -4.8721538, z: -0.2}
+<<<<<<< HEAD
   m_LocalScale: {x: 100, y: 0.1, z: 100}
+=======
+  m_LocalScale: {x: 5, y: 0.1, z: 5}
+>>>>>>> Player
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
