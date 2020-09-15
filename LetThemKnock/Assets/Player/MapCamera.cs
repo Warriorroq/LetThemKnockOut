@@ -22,7 +22,6 @@ public class MapCamera : MonoBehaviour
         if (isMove)
             Transport();
 
-        //enable mapControllermenu
     }
     private void Transport()
     {
@@ -34,6 +33,7 @@ public class MapCamera : MonoBehaviour
         isMove = false;
         transform.position = pos.position;
         transform.rotation = pos.rotation;
+        GetComponent<UserMap>().enabled = true;
     }
 
     
