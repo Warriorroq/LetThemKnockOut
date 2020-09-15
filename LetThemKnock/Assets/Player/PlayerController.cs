@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private PlayerParams param;
     private float slideTime;
 
-    private void Start()
+    private void OnEnable()
     {
         param = GetComponent<PlayerParams>();
         controller = GetComponent<CharacterController>();
@@ -26,6 +26,8 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles = new Vector3(0, transform.eulerAngles.y, 0);
         CheckRun();
         Grounded();
+
+        moveDirection.y -= gravity * Time.deltaTime;
 
         if(controller.enabled)
             controller.Move(moveDirection * Time.deltaTime);

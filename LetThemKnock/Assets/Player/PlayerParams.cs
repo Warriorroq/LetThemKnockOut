@@ -13,7 +13,7 @@ public class PlayerParams : MonoBehaviour
     }
     public state currentState;
 
-    public int maxStamina;
+    public int maxStamina = 100;    
     private int currentStamina;
     public int maxArmor;
     private int currentArmor;
@@ -81,16 +81,12 @@ public class PlayerParams : MonoBehaviour
     }
     public void TakeFallDamage(int damage)
         =>currentHp -= damage;
+
     private void OnDestroy()
     {
-        PlayerCameraRotation[] rot = GetComponentsInChildren<PlayerCameraRotation>();
-
-        foreach(PlayerCameraRotation cam in rot)
-        {
-            GameObject camera = cam.gameObject;
-            camera.transform.parent = null;
-            camera.GetComponent<PlayerCameraRotation>().enabled = false;
-            camera.GetComponent<MapCamera>().enabled = true;
-        }
+       PlayerCameraRotation rot = GetComponentInChildren<PlayerCameraRotation>();
+       rot.gameObject.transform.parent = null;
+       rot.gameObject.GetComponent<PlayerCameraRotation>().enabled = false;
+       rot.gameObject.GetComponent<MapCamera>().enabled = true;
     }
 }
