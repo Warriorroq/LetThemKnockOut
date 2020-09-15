@@ -62,7 +62,7 @@ public class PlayerParams : MonoBehaviour
     private void CheckHp()
     {
         if (currentHp <= 0)
-            Destroy(this.gameObject);
+            Died();
         else if (currentHp > maxHp)
             currentHp = maxHp;
     }
@@ -81,12 +81,12 @@ public class PlayerParams : MonoBehaviour
     }
     public void TakeFallDamage(int damage)
         =>currentHp -= damage;
-
-    private void OnDestroy()
+    private void Died()
     {
-       PlayerCameraRotation rot = GetComponentInChildren<PlayerCameraRotation>();
-       rot.gameObject.transform.parent = null;
-       rot.gameObject.GetComponent<PlayerCameraRotation>().enabled = false;
-       rot.gameObject.GetComponent<MapCamera>().enabled = true;
+        PlayerCameraRotation rot = GetComponentInChildren<PlayerCameraRotation>();
+        rot.gameObject.GetComponent<PlayerCameraRotation>().enabled = false;
+        rot.gameObject.transform.parent = null;
+        rot.gameObject.GetComponent<MapCamera>().enabled = true;
+        Destroy(this.gameObject);
     }
 }
