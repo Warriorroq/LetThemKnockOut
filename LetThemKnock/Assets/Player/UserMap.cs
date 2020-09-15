@@ -23,6 +23,7 @@ public class UserMap : MonoBehaviour
             transform.parent = hit.collider.gameObject.transform;
             transform.localPosition = new Vector3(0, 1, 0);
             Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity);
+            Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, Mathf.Infinity);
         }
         catch
         {
