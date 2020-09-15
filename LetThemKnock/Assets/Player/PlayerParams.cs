@@ -82,7 +82,7 @@ public class PlayerParams : MonoBehaviour
     public void TakeFallDamage(int damage)
         =>currentHp -= damage;
     private void Died()
-    {
+    {   
         PlayerCameraRotation rot = GetComponentInChildren<PlayerCameraRotation>();
         rot.gameObject.GetComponent<PlayerCameraRotation>().enabled = false;
         rot.gameObject.transform.parent = null;
